@@ -1,0 +1,22 @@
+<footer class="footer">
+    <!-- This should be `0 items left` by default -->
+    <span class="todo-count">
+        <strong>{{contador}} </strong>
+        <span *ngIf="contador>1;else elseblock">items left</span>
+        <ng-template #elseblock>item left</ng-template>
+    </span>
+    <!-- Remove this if you don't implement routing -->
+    <ul class="filters">
+      <li>
+        <a routerLink="/" [class.selected]="ruta=='/'">All</a>
+      </li>
+      <li>
+        <a routerLink="/pending" [class.selected]="ruta=='/pending'">Pending</a>
+      </li>
+      <li>
+        <a routerLink="/completed" [class.selected]="ruta=='/completed'">Completed</a>
+      </li>
+    </ul>
+    <!-- Hidden if no completed items are left ↓ -->
+    <button *ngIf="(completed>0)" class="clear-completed" (click)="deleteCompleted()">Clear completed</button>
+</footer>
